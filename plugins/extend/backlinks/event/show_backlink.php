@@ -1,6 +1,5 @@
 <?php
 
-use Sunlight\Database\Database as DB;
 use Sunlight\Router;
 use Sunlight\Template;
 use Sunlight\WebState;
@@ -18,8 +17,7 @@ return function (array $args) {
             && $_index->backlink === null
             && (isset($_page) && $_page['node_parent'] !== null)
         ) {
-            $parent = DB::queryRow("SELECT slug FROM " . DB::table('page') . " WHERE id=" . $_page['node_parent']);
-            $_index->backlink = Router::page($_page['node_parent'], $parent['slug']);
+            $_index->backlink = Router::page($_page['node_parent']);
         }
 
         // articles
