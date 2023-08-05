@@ -11,10 +11,10 @@ use Sunlight\Router;
  * Example: 'backlink:gallery' (without quotes)
  */
 return function (array $args) {
-    Extend::reg('tpl.backlink', function ($backlinkArgs) use ($args) {
-        if (!isset($args['arg'])) {
-            return;
-        }
-        $backlinkArgs['backlink'] = _e(Router::slug($args['arg']));
+    if (!isset($args['arg'])) {
+        return;
+    }
+    Extend::reg('tpl.backlink', function (array $backlinkArgs) use ($args) {
+        $backlinkArgs['backlink'] = Router::slug($args['arg']);
     });
 };
