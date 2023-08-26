@@ -7,16 +7,8 @@ use Sunlight\Util\Form;
 
 class ConfigAction extends BaseConfigAction
 {
-    protected function getFields(): array
+    public function getConfigLabel(string $key): string
     {
-        $config = $this->plugin->getConfig();
-
-        return [
-            'page_show_backlinks' => [
-                'label' => _lang('backlinks.config.page_show_backlinks'),
-                'input' => '<input type="checkbox" name="config[page_show_backlinks]" value="1"' . Form::activateCheckbox($config->offsetGet('page_show_backlinks')) . '>',
-                'type' => 'checkbox',
-            ],
-        ];
+        return _lang('backlinks.config.' . $key);
     }
 }
